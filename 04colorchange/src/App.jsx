@@ -1,34 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
+const colors = ['#0f172a', '#1d4ed8', '#047857', '#b45309', '#be123c', '#6d28d9']
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [background, setBackground] = useState(colors[0])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <main className="color-page" style={{ backgroundColor: background }}>
+      <section className="color-card">
+        <p className="eyebrow">React state practice</p>
+        <h1>Background color changer</h1>
+        <p>Select a color to update the page without reloading it.</p>
+        <div className="palette" aria-label="Background colors">
+          {colors.map((color) => (
+            <button aria-label={`Use color ${color}`} className={background === color ? 'selected' : ''} key={color} onClick={() => setBackground(color)} style={{ backgroundColor: color }} type="button" />
+          ))}
+        </div>
+        <output>{background}</output>
+      </section>
+    </main>
   )
 }
 
